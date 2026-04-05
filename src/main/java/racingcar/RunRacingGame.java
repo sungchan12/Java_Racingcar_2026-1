@@ -1,33 +1,36 @@
 package racingcar;
 
-import camp.nextstep.edu.missionutils.Console;
-import racingcar.entity.Car;
-import racingcar.entity.Cars;
 
 import java.util.ArrayList;
-
-import static racingcar.util.Utils.isValidNumber;
-import static racingcar.util.Utils.splitNames;
+import java.util.List;
+import racingcar.entity.Car;
+import racingcar.entity.Cars;
+import racingcar.view.racingCarInput;
+import racingcar.view.racingCarOutput;
 
 public class RunRacingGame {
-    public void run() {
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        String[] carNames = splitNames(Console.readLine());
-        System.out.println("시도할 회수는 몇회인가요?");
-        int number = isValidNumber(Console.readLine());
+    private racingCarInput input = new racingCarInput();
+    private racingCarOutput output = new racingCarOutput();
 
-        ArrayList<Car> carsList = new ArrayList<>();
-        for (String carName : carNames) {
-            Car car = new Car(carName);
-            carsList.add(car);
-        }
+    public void run() {
+        String[] carNames = input.readCarNames();
+        int tryCount = input.readTryCount();
+
+        Cars cars = createCars(carNames);
 
         System.out.println("\n실행 결과");
-        Cars cars = new Cars(carsList);
-        for (int i = 0; i < number; i++) {
+        for (int i = 0; i < tryCount; i++) {
             cars.moveAllCars();
-            cars.printMoveResult();
+            output.printRaceResult(cars);
         }
-        cars.printWinner();
+        output.printWinner(cars.getWinners());
+    }
+
+    private Cars createCars(String[] carNames) {
+        List<Car> carList = new ArrayList<>();
+        for (String name : carNames) {
+            carList.add(new Car(name));
+        }
+        return new Cars(carList);
     }
 }
