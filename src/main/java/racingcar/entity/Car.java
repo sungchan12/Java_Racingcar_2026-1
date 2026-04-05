@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Car {
     private final String name;
     private int moveCnt;
-    private final int MOVE_THRESHOLD = 4;
+    private static final int MOVE_THRESHOLD = 4;
 
     public Car(String name) {
         validateName(this.name = name);
