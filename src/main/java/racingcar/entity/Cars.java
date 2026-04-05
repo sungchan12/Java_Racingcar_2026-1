@@ -1,11 +1,13 @@
 package racingcar.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class Cars {
-    private ArrayList<Car> cars;
+    private List<Car> cars;
 
-    public Cars(ArrayList<Car> cars) {
+    public Cars(List<Car> cars) {
         this.cars = cars;
     }
 
@@ -45,5 +47,14 @@ public class Cars {
     public void printWinner() {
         ArrayList<String> winners = findWinners(findMaxMoveCnt());
         System.out.println("최종 우승자 : " + String.join(", ", winners));
+    }
+
+    private void validateDuplicate(List<Car> cars) {
+        HashSet<String> set = new HashSet<>();
+        for (Car car : cars) {
+            if (!set.add(car.getName())) {
+                throw new IllegalArgumentException("이름 중복은 허용 안됩니다.");
+            }
+        }
     }
 }
