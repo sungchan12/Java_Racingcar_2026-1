@@ -8,6 +8,7 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(List<Car> cars) {
+        validateDuplicate(cars);
         this.cars = cars;
     }
 
@@ -15,13 +16,6 @@ public class Cars {
         for (Car car : this.cars) {
             car.setMoveCnt();
         }
-    }
-
-    public void printMoveResult() {
-        for (Car car : this.cars) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getMoveCnt()));
-        }
-        System.out.println();
     }
 
     private int findMaxMoveCnt() {
@@ -42,11 +36,6 @@ public class Cars {
             }
         }
         return winners;
-    }
-
-    public void printWinner() {
-        ArrayList<String> winners = findWinners(findMaxMoveCnt());
-        System.out.println("최종 우승자 : " + String.join(", ", winners));
     }
 
     private void validateDuplicate(List<Car> cars) {
