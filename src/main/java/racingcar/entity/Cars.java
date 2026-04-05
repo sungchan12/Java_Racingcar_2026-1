@@ -11,7 +11,9 @@ public class Cars {
         validateDuplicate(cars);
         this.cars = cars;
     }
-
+    public List<Car> getCars() {
+        return cars;
+    }
     public void moveAllCars() {
         for (Car car : this.cars) {
             car.setMoveCnt();
