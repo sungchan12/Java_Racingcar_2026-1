@@ -30,8 +30,9 @@ public class Cars {
         return max;
     }
 
-    private ArrayList<String> findWinners(int max) {
-        ArrayList<String> winners = new ArrayList<>();
+    public List<String> getWinners() {
+        int max = findMaxMoveCnt();
+        List<String> winners = new ArrayList<>();
         for (Car car : this.cars) {
             if (car.getMoveCnt() == max) {
                 winners.add(car.getName());
