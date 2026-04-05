@@ -13,7 +13,6 @@ public class RunRacingGame {
     private racingCarOutput output = new racingCarOutput();
 
     public void run() {
-        //TODO : Input과 Output 출력하는 책임을 분리 진행
         String[] carNames = input.readCarNames();
         int tryCount = input.readTryCount();
 
