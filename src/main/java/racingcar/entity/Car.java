@@ -6,6 +6,7 @@ import racingcar.util.Utils;
 public class Car {
     private final String name;
     private int moveCnt;
+    private final int MOVE_THRESHOLD = 4;
 
     public Car(String name) {
         Utils.isValidName(this.name = name);
@@ -21,9 +22,8 @@ public class Car {
     }
 
     public void setMoveCnt() {
-        int RandomNum = Randoms.pickNumberInRange(0, 9);
-        if (RandomNum >= 4) {
-            this.moveCnt += 1;
+        if (Randoms.pickNumberInRange(0, 9) >= MOVE_THRESHOLD) {
+            this.moveCnt++;
         }
     }
 }
